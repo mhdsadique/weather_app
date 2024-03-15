@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 
-// import { UilLocationPinAlt ,UilSearch } from '@iconscout/react-unicons'
 import { Forecast } from '../component/forecast'
 import { useEffect } from 'react'
-// const  apikey="8815742ecfc470debe411ce863d6f4ae"
 const  apikey="6dfa8a0a4791b3719eb8b8356e510052"
 
 export const Weather = () => {
