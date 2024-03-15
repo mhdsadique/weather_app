@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
+
+// import { UilLocationPinAlt ,UilSearch } from '@iconscout/react-unicons'
+import { Forecast } from '../component/forecast'
+import { useEffect } from 'react'
 // const  apikey="8815742ecfc470debe411ce863d6f4ae"
-const  apikey="753fca57bd25f4501eae271281dd7b76"
-// https://api.openweathermap.org/data/2.5/weather?q=palakkad&appid=8815742ecfc470debe411ce863d6f4ae
-// https://api.openweathermap.org/data/2.5/weather?q=alanallur&appid=${apikey}
+const  apikey="6dfa8a0a4791b3719eb8b8356e510052"
+
 export const Weather = () => {
     const [data,setData]=useState([{}])
     const [city,setCity]=useState("")
-
-    const getwheather=(e)=>{
-        if(e.key=="Enter"){
- fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`) 
-  .then(r=>r.json()).then(da=>{setData(da);setCity(""); console.log(da)})
-  .catch(e=>console.log(e))
-            
-        }
-    }
+    const [lat,setlat]=useState("")
+    const [lon,setlon]=useState("")
+    const [forecast,setforecast]=useState([{}])
+    const date=Date () 
+    const Getwheather=(e)=>{
+   
+    
+          if(e.key==="Enter"){
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`) 
+             .then(r=>r.json()).then(da=>{setData(da); })
+             .catch(e=>console.log(e))
+                       
+                        }
+      }
+      if(data){
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`)
+             .then(r=>r.json()).then(da=>{setforecast(da); console.log(da)})
+             .catch(e=>console.log(e))
+             console.log(forecast) 
+          }
 
   return (
     <div>
@@ -22,19 +36,31 @@ export const Weather = () => {
     <div>
         <input type="text"placeholder='Search City....' 
         onChange={e=>setCity(e.target.value)}value={city}
-        onKeyPress={getwheather} />
-
+        onKeyPress={Getwheather} />
+     
         <div>
         <h4>Weather App</h4>
             {
                 typeof data.main==="undefined" ? 
                     <div><p>Enter Your City</p></div>:
+                    <div>
                           <div>
-                            <h4>{data.name}</h4>
-                            <h4>{Math.round(data.main.temp)}°C </h4>
-                            <h4>{data.weather[0].main}</h4>
-                          </div> 
+                            <h2>{data.name}</h2>
+                            <h5> {date}</h5>
+                            <img src="https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/PartlyCloudyDayV3.svg" alt="logo"  />
+                            <h2>{`${Math.round(data.main.temp)}`}°C </h2>
+
                        
+                            <h4>{data.weather[0].main}</h4>
+                        
+                            <h4>{`Humidity : ${data.main.humidity}`}</h4>
+                            <h4>{`Wind speed : ${data.wind.speed}`}</h4>
+                          </div> 
+                          {
+
+                          forecast?.list.map((e)=><Forecast key={e.id} titile={"Hourly forecast"} data={e}/>)
+                          }
+                       </div>
             }
         </div>
         {
@@ -46,3 +72,4 @@ export const Weather = () => {
     </div>
   )
 }
+

@@ -7,7 +7,6 @@ import {useState} from "react"
 export const Register=()=>{
     const [email,setEmail]=useState()
     const [password,setpassword]=useState()
-
     const payload={email,password}
     const submitdata=()=>{
         fetch("http://localhost:8000/rout/register",{
@@ -26,7 +25,6 @@ return(<>
 <input type="password" onChange={(e)=>setpassword(e.target.value)} value={password}/>
 <button onClick={submitdata}>Register</button>
 </>)
-
-    
+   
 
 }

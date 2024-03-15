@@ -5,7 +5,6 @@ import {useState} from "react"
 export const Login=()=>{
     const [email,setEmail]=useState()
     const [password,setpassword]=useState()
-
     const payload={email,password}
     const submitdata=()=>{
         fetch("http://localhost:8000/rout/login",{
