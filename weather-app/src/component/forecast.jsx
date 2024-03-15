@@ -1,20 +1,17 @@
 import React from 'react'
 
-export const Forecast = ({titile,e}) => {
-    console.log(e)
+export const Forecast = ({titile,datas}) => {
+    console.log(datas)
     return (
         <div>
-        <p>{titile}</p>
         
      <div>
-                <p>{e.list.dt_txt}</p>
-                <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wHgf?ver=65a5" alt="" srcset="logo" />
-                <p>{e.list.weather.main}</p>
-                <p>{e.list.main.temp + "°C"}</p>
-                <p>{e.list.main.humidity}</p>
-            </div>
-            
-        
+                <p>{datas.dt_txt}</p>
+                <img src="https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/PartlyCloudyDayV3.svg" alt="logo"  />
+                <p>{datas.weather.main}</p>
+                <p>{datas.main.temp + "°C"}</p>
+                <p>{"Humidity : "+datas.main.humidity}</p>
+            </div> 
       
     </div>
 

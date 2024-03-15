@@ -18,10 +18,10 @@ export const Login=()=>{
         localStorage.setItem("token",re.token)})
         .catch(er=>console.log(er))
     }
-return(<>
-<input type="email" onChange={(e)=>setEmail(e.target.value)} value={email} />
-<input type="password" onChange={(e)=>setpassword(e.target.value)} value={password}/>
+return(<div style={{width:"50%",margin:"auto",display:"flex",alignItems:"center",justifyContent:"center"}}>
+<input placeholder="email..."  type="email" onChange={(e)=>setEmail(e.target.value)} value={email} />
+<input placeholder="password..."  type="password" onChange={(e)=>setpassword(e.target.value)} value={password}/>
 <button onClick={submitdata}>Login</button>
-</>)
+</div>)
 
 }
