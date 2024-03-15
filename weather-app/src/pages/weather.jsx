@@ -18,7 +18,7 @@ export const Weather = () => {
     
           if(e.key==="Enter"){
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`) 
-             .then(r=>r.json()).then(da=>{setData(da); })
+             .then(r=>r.json()).then(da=>{setData(da);setlon(da.coord.lon);setlat(da.coord.lat) })
              .catch(e=>console.log(e))
                        
                         }
